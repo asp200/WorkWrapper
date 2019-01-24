@@ -1,0 +1,28 @@
+cmake_minimum_required(VERSION 3.5)
+
+project(work VERSION 1.0 LANGUAGES CXX)
+
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+           
+set(detail_header_files
+   ${PROJECT_SOURCE_DIR}/include/work/IndexSequence.hpp)
+set(header_files
+   ${PROJECT_SOURCE_DIR}/include/work/Work.hpp)
+
+add_library(work INTERFACE)
+target_sources(work INTERFACE $<BUILD_INTERFACE:${detail_header_files} ${header_files}>)
+target_include_directories(work INTERFACE $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>)
+
+# Place binaries and libraries according to GNU standards
+include(GNUInstallDirs)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_LIBDIR})
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_LIBDIR})
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_BINDIR})
+
+include(cmake/googletest.cmake)
+fetch_googletest( ${PROJECT_SOURCE_DIR}/cmake ${PROJECT_BINARY_DIR}/googletest)
+	
+enable_testing()
+add_subdirectory(test)

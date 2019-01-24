@@ -7,7 +7,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
            
 set(detail_header_files
-   ${PROJECT_SOURCE_DIR}/include/work/IndexSequence.hpp)
+   ${PROJECT_SOURCE_DIR}/include/work/detail/IndexSequence.hpp)
 set(header_files
    ${PROJECT_SOURCE_DIR}/include/work/Work.hpp)
 

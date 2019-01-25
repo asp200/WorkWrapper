@@ -1,3 +1,5 @@
+# Based upon recommendations in https://stackoverflow.com/questions/41916656
+
 os: linux
 dist: trusty
 language: cpp

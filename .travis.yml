@@ -10,6 +10,10 @@ addons:
     packages:
       - gcc-7
       - g++-7
+
+before_install:
+  - pip install --user cpp-coveralls
+  
 script:
   - export CC=gcc-7
   - export CXX=g++-7
@@ -19,3 +23,6 @@ script:
   - cmake ..
   - cmake --build .
   - ctest
+
+after_success:
+  - coveralls --root .. -E ".*CMakeFiles.*" -E ".*test/.*.cpp.*"
